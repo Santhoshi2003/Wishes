@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Wishes</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div id="confetti"></div> <!-- Confetti container -->
+    <div class="page">
+        <h1>I will be always with you and let's together fulfill your dream!</h1>
+        <div class="floating-heart" style="top: 20px; left: 30px;">❤️</div>
+        <div class="floating-heart" style="top: 100px; left: 70px;">💖</div>
+        <div class="floating-heart" style="top: 200px; left: 50px;">💕</div>
+        <button onclick="window.location.href='/page4'">Next</button>
+    </div>
+
+    <script>
+        // Function to create confetti pieces with heart emojis
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confetti');
+            const confettiItems = ['❤️', '💖', '💕']; // Heart emojis as confetti items
+            for (let i = 0; i < 200; i++) {
+                const confettiPiece = document.createElement('div');
+                const randomItem = confettiItems[Math.floor(Math.random() * confettiItems.length)];
+                confettiPiece.classList.add('confetti-piece');
+                confettiPiece.innerText = randomItem; // Set emoji as content
+                confettiPiece.style.left = Math.random() * 100 + 'vw';
+                confettiPiece.style.animationDuration = Math.random() * 3 + 2 + 's'; // Random duration
+                confettiPiece.style.fontSize = Math.random() * 20 + 20 + 'px'; // Random size for fun
+                confettiContainer.appendChild(confettiPiece);
+            }
+        }
+        createConfetti(); // Call the function to generate the confetti
+    </script>
+</body>
+</html>

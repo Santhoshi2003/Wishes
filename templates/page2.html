@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Wishes</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div id="confetti"></div> <!-- Confetti container -->
+    <div class="page">
+        <h1>Happy Birthday, Venu!</h1>
+        <div class="cake-chocolate" style="top: 20px; left: 30px;">🎂</div>
+        <div class="cake-chocolate" style="top: 40px; left: 60px;">🍫</div>
+        <div class="cake-chocolate" style="top: 50px; left: 80px;">🎂</div>
+        <button onclick="window.location.href='/page3'">Next</button>
+    </div>
+
+    <script>
+        // Function to create confetti pieces with cakes and chocolates
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confetti');
+            const confettiItems = ['🎂', '🍫']; // Cakes and chocolates as confetti items
+            for (let i = 0; i < 200; i++) {
+                const confettiPiece = document.createElement('div');
+                const randomItem = confettiItems[Math.floor(Math.random() * confettiItems.length)];
+                confettiPiece.classList.add('confetti-piece');
+                confettiPiece.innerText = randomItem; // Set emoji as content
+                confettiPiece.style.left = Math.random() * 100 + 'vw';
+                confettiPiece.style.animationDuration = Math.random() * 3 + 2 + 's'; // Random duration
+                confettiPiece.style.fontSize = Math.random() * 20 + 20 + 'px'; // Random size for fun
+                confettiContainer.appendChild(confettiPiece);
+            }
+        }
+        createConfetti(); // Call the function to generate the confetti
+    </script>
+</body>
+</html>
