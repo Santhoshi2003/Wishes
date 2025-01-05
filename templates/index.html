@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Wishes</title>
+    <style>
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* General Body Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #FF1493;
+        }
+
+        /* Page Styling */
+        .page {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            transition: all 1s ease-in-out;
+        }
+
+        /* Floating Animation */
+        @keyframes float-up-down {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-20px);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Cake-chocolate Floating (Page 2) */
+        .cake-chocolate {
+            position: absolute;
+            animation: float-up-down 3s ease-in-out infinite;
+        }
+
+        /* Floating Hearts (Page 3) */
+        .floating-heart {
+            position: absolute;
+            animation: float-up-down 3s ease-in-out infinite;
+        }
+
+        /* Balloons Animation */
+        .balloons {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Ensures balloons don't block interactions */
+        }
+
+        .balloon {
+            position: absolute;
+            bottom: -150px; /* Start position off-screen */
+            width: 50px;
+            height: 80px;
+            border-radius: 50%;
+            animation: balloon-animation 5s ease-in infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes balloon-animation {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Button Styling */
+        button {
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background-color: #FFD700;
+            border: none;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #FFA500;
+        }
+
+        /* Confetti Animation */
+        #confetti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            opacity: 0;
+            animation: confetti 5s linear infinite;
+        }
+
+        @keyframes confetti {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- First Page -->
+    <div class="page">
+        <h1>Happy Birthday, Venu!</h1>
+        <button onclick="window.location.href='/page2'">Next</button>
+    </div>
+
+    <div id="confetti"></div> <!-- Confetti container for balloons -->
+
+    <script>
+        // Function to create balloon confetti pieces
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confetti');
+            const confettiItems = ['🎈']; // Balloon emoji as confetti items
+            for (let i = 0; i < 200; i++) {
+                const confettiPiece = document.createElement('div');
+                const randomItem = confettiItems[Math.floor(Math.random() * confettiItems.length)];
+                confettiPiece.classList.add('confetti-piece');
+                confettiPiece.innerText = randomItem; // Set emoji as content
+                confettiPiece.style.left = Math.random() * 100 + 'vw';
+                confettiPiece.style.animationDuration = Math.random() * 3 + 2 + 's'; // Random duration for falling animation
+                confettiPiece.style.fontSize = Math.random() * 20 + 20 + 'px'; // Random size for fun
+                confettiContainer.appendChild(confettiPiece);
+            }
+        }
+        createConfetti(); // Call the function to generate the balloon confetti
+    </script>
+
+    <!-- Second Page -->
+    <div class="page">
+        <h1>Happy Birthday, Venu!</h1>
+        <div class="cake-chocolate" style="top: 20px; left: 30px;">🎂</div>
+        <div class="cake-chocolate" style="top: 40px; left: 60px;">🍫</div>
+        <div class="cake-chocolate" style="top: 50px; left: 80px;">🎂</div>
+        <button onclick="window.location.href='/page3'">Next</button>
+    </div>
+
+    <div id="confetti"></div> <!-- Confetti container -->
+
+    <script>
+        // Function to create confetti pieces with cakes and chocolates
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confetti');
+            const confettiItems = ['🎂', '🍫']; // Cakes and chocolates as confetti items
+            for (let i = 0; i < 200; i++) {
+                const confettiPiece = document.createElement('div');
+                const randomItem = confettiItems[Math.floor(Math.random() * confettiItems.length)];
+                confettiPiece.classList.add('confetti-piece');
+                confettiPiece.innerText = randomItem; // Set emoji as content
+                confettiPiece.style.left = Math.random() * 100 + 'vw';
+                confettiPiece.style.animationDuration = Math.random() * 3 + 2 + 's'; // Random duration
+                confettiPiece.style.fontSize = Math.random() * 20 + 20 + 'px'; // Random size for fun
+                confettiContainer.appendChild(confettiPiece);
+            }
+        }
+        createConfetti(); // Call the function to generate the confetti
+    </script>
+
+    <!-- Third Page -->
+    <div class="page">
+        <h1>I will be always with you and let's together fulfill your dream!</h1>
+        <div class="floating-heart" style="top: 20px; left: 30px;">❤️</div>
+        <div class="floating-heart" style="top: 100px; left: 70px;">💖</div>
+        <div class="floating-heart" style="top: 200px; left: 50px;">💕</div>
+        <button onclick="window.location.href='/page4'">Next</button>
+    </div>
+
+    <script>
+        // Function to create confetti pieces with heart emojis
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confetti');
+            const confettiItems = ['❤️', '💖', '💕']; // Heart emojis as confetti items
+            for (let i = 0; i < 200; i++) {
+                const confettiPiece = document.createElement('div');
+                const randomItem = confettiItems[Math.floor(Math.random() * confettiItems.length)];
+                confettiPiece.classList.add('confetti-piece');
+                confettiPiece.innerText = randomItem; // Set emoji as content
+                confettiPiece.style.left = Math.random() * 100 + 'vw';
+                confettiPiece.style.animationDuration = Math.random() * 3 + 2 + 's'; // Random duration
+                confettiPiece.style.fontSize = Math.random() * 20 + 20 + 'px'; // Random size for fun
+                confettiContainer.appendChild(confettiPiece);
+            }
+        }
+        createConfetti(); // Call the function to generate the confetti
+    </script>
+
+    <!-- Fourth Page -->
+    <div class="page">
+        <h1>Thanks for getting into my life!</h1>
+        <div id="confetti"></div>
+        <button onclick="window.location.href='/page1'">Back to Start</button>
+    </div>
+
+    <script>
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confetti');
+            for (let i = 0; i < 200; i++) {
+                const confettiPiece = document.createElement('div');
+                confettiPiece.classList.add('confetti-piece');
+                confettiPiece.style.left = Math.random() * 100 + 'vw';
+                confettiPiece.style.animationDuration = Math.random() * 3 + 2 + 's';
+                confettiPiece.style.backgroundColor = `#${Math.floor(Math.random()*16777215).toString(16)}`;
+                confettiContainer.appendChild(confettiPiece);
+            }
+        }
+        createConfetti();
+    </script>
+</body>
+</html>
